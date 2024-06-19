@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block title %}Chat{% endblock %} {% block content %}
+<h1>Welcome, {{ username }}</h1>
+<div class="chat-container">
+    <h2>Chat</h2>
+    <form id="chat-form" class="chat-form" action="/send_message" method="post">
+        <label for="receiver">Receiver:</label>
+        <input type="text" id="receiver" name="receiver" required>
+        <br>
+        <label for="message">Message:</label>
+        <input type="text" id="message" name="message" required>
+        <br><br>
+        <input type="submit" value="Send">
+    </form>
+    <hr> {% for message in messages %}
+    <div class="chat-message">
+        <strong>{{ message[1] }}</strong> to <strong>{{ message[2] }}</strong>: {{ message[3] }} ({{ message[4] }})
+    </div>
+    {% endfor %}
+</div>
+<br>
+<a href="/logout" class="logout-link">Logout</a> {% endblock %}
